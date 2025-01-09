@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+}
+
+body {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.voltage-button {
+  position: fixed; /* Ensures the button stays in the top-left corner even when scrolling */
+  top: 20px; /* Adjust distance from the top */
+  left: 20px; /* Adjust distance from the left */
+  z-index: 1000; /* Ensures it appears above other elements */
+}
+
+.voltage-button button {
+  color: white;
+  background: #0D1127; /* Dark background */
+  padding: 0.5rem 1rem; /* Reduced padding for smaller button */
+  border-radius: 0.5rem; /* Slightly rounded corners */
+  border: 1px solid #5978F3; /* Thin border */
+  font-size: 1rem; /* Small font size */
+  line-height: 1.2em; /* Adjusted line height */
+  letter-spacing: 0.05em; /* Slight letter spacing */
+  transition: background 0.3s;
+  width: auto; /* Automatically adjust width to fit text */
+  height: auto; /* Automatically adjust height to fit content */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.voltage-button button:hover {
+  cursor: pointer;
+  background: #0F1C53;
+}
+.voltage-button button:hover + svg, .voltage-button button:hover + svg + .dots {
+  opacity: 1;
+}
+.voltage-button svg {
+  display: block;
+  position: absolute;
+  top: -0.75em;
+  left: -0.25em;
+  width: calc(100% + 0.5em);
+  height: calc(100% + 1.5em);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  transition-delay: 0.1s;
+}
+.voltage-button svg path {
+  stroke-dasharray: 100;
+  filter: url("#glow");
+}
+.voltage-button svg path.line-1 {
+  stroke: #f6de8d;
+  stroke-dashoffset: 0;
+  animation: spark-1 3s linear infinite;
+}
+.voltage-button svg path.line-2 {
+  stroke: #6bfeff;
+  stroke-dashoffset: 500;
+  animation: spark-2 3s linear infinite;
+}
+.voltage-button .dots {
+  opacity: 0;
+  transition: opacity 0.3s;
+  transition-delay: 0.4s;
+}
+.voltage-button .dots .dot {
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  opacity: 0;
+}
+.voltage-button .dots .dot-1 {
+  top: 0;
+  left: 20%;
+  animation: fly-up 3s linear infinite;
+}
+.voltage-button .dots .dot-2 {
+  top: 0;
+  left: 55%;
+  animation: fly-up 3s linear infinite;
+  animation-delay: 0.5s;
+}
+.voltage-button .dots .dot-3 {
+  top: 0;
+  left: 80%;
+  animation: fly-up 3s linear infinite;
+  animation-delay: 1s;
+}
+.voltage-button .dots .dot-4 {
+  bottom: 0;
+  left: 30%;
+  animation: fly-down 3s linear infinite;
+  animation-delay: 2.5s;
+}
+.voltage-button .dots .dot-5 {
+  bottom: 0;
+  left: 65%;
+  animation: fly-down 3s linear infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes spark-1 {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+@keyframes spark-2 {
+  to {
+    stroke-dashoffset: -500;
+  }
+}
+@keyframes fly-up {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.2);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(-1.5rem) scale(0.4);
+  }
+  10%, 100% {
+    opacity: 0;
+    transform: translateY(-3rem) scale(0.2);
+  }
+}
+@keyframes fly-down {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.2);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(1.5rem) scale(0.4);
+  }
+  10%, 100% {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.2);
+  }
+}
+
+.slider-container{
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-images{
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+.slider-images img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.slider-img{
+  width: 110px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.7s ease;
+}
+.slider-images .slider-img:first-child, .slider-images .slider-img:last-child{
+  height: 480px;
+}
+.slider-images .slider-img:nth-child(2), .slider-images .slider-img:nth-child(6){
+  height: 560px;
+}
+.slider-images .slider-img:nth-child(3), .slider-images .slider-img:nth-child(4), .slider-images .slider-img:nth-child(5){
+  height: 665px;
+}
+h1{
+  font-family: "Jost", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  transform: rotate(270deg);
+  transition: 0.7s ease;
+}
+.details{
+  position: absolute;
+  bottom: 43px;
+  left: 43px;
+}
+.details h2{
+  font-family: "Jost", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 44px;
+  text-align: left;
+  color: #fff;
+  text-transform: uppercase;
+  transition: 0.7s ease;
+  display: none;
+}
+.details p{
+  font-family: "Jost", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 33px;
+  text-align: left;
+  color: #fff;
+  text-transform: uppercase;
+  transition: 0.7s ease;
+  display: none;
+}
+.slider-img.active{
+  width: 766px !important;
+  height: 750px !important;
+}
+.slider-img.active h1{
+   display: none;
+}
+.slider-img.active .details p, .slider-img.active .details h2{
+  display: block;
+}
